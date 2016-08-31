@@ -30,7 +30,7 @@ if __name__ == '__main__':
                         credentials[1].strip(),
                         credentials[2].strip(),
                         credentials[3].strip())
-            T.sendmessage()
+            T.Send_message()
     # If credentials file is nonexistant, info is asked for and a file called "Credentials.txt" is created.
     else:
         account_sid = raw_input('Account SID: ')
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         sender = raw_input('Sender: ')
         recipient = raw_input('Recipient: ')
         T = Texting(account_sid, auth_token, sender, recipient)
-        T.sendmessage()
+        T.Send_message()
         with open("credentials.txt", "w") as credentials:
             new_text = "{}\n{}\n{}\n{}".format(account_sid, auth_token, sender, recipient)
             credentials.write(new_text)
