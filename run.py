@@ -1,12 +1,13 @@
 
 from flask import Flask, request, redirect
 import twilio.twiml
+import api
 
 app = Flask(__name__)
 
 # Try adding your own number to this list!
 callers = {
-    "+16627600883": "Adam"
+    my_number: "Adam"
 }
 
 @app.route("/", methods=['GET', 'POST'])
