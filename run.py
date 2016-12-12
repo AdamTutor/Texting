@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect
 import twilio.twiml
 import os
 
@@ -23,9 +23,9 @@ def hello_monkey():
         message = "Monkey, thanks for the message!"
 
     resp = twilio.twiml.Response()
-    resp.message(message)
+    resp.message(message, message_text=message_text)
 
-    return render_template("response.html")
+    return str(resp)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
