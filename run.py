@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template
 import twilio.twiml
 import os
+from send_sms import *
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ callers = {
 }
 
 @app.route("/", methods=['GET', 'POST'])
-def hello_monkey():
+def root():
     """Respond and greet the caller by name."""
 
     from_number = request.values.get('From', None)
@@ -20,12 +21,20 @@ def hello_monkey():
     if from_number in callers:
         message = callers[from_number] + ", thanks for the message!"
     else:
-        message = "Monkey, thanks for the message!"
+        message = "Thanks for the message!"
 
     resp = twilio.twiml.Response()
     resp.message(message, message_text=message_text)
 
     return render_template("response.html")
+
+@app.route("/send_message", methods=['GET', 'POST'])
+def send_message():
+    if request.message == "GET":
+        render_template("response.html")
+    if request.message == "POST":
+        send_sms(request.form["your_number"], request.form["recipient's_number"], request.form("msg"))
+        return redirect("/send_message")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
