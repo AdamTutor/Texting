@@ -17,9 +17,6 @@ callers = {
 def hello():
     """Respond and greet the caller by name."""
     if request.method == "POST":
-        message = request.values
-        with open("new_file.txt, w") as file
-        file.write(message)
         from_number = request.values.get('From')
         if from_number in callers:
             message = callers[from_number] + ", thanks for the message!"
