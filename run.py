@@ -12,21 +12,46 @@ callers = {
     "+14158675311": "Virgil",
 }
 
+
 @app.route("/", methods=['GET', 'POST'])
-def root():
+def hello_monkey():
     """Respond and greet the caller by name."""
 
     from_number = request.values.get('From', None)
-    message_text = request.values
     if from_number in callers:
         message = callers[from_number] + ", thanks for the message!"
     else:
-        message = "Thanks for the message!"
+        message = "Monkey, thanks for the message!"
 
     resp = twilio.twiml.Response()
-    resp.message(message, message_text=message_text)
+    resp.message(message)
 
-    return render_template("response.html")
+    return str(resp)
+
+
+
+
+@app.route("/", methods=['GET', 'POST'])
+def hello():
+    """Respond and greet the caller by name."""
+    if request.method == "POST":
+        from_number = request.values.get('From')
+        if from_number in callers:
+            message = callers[from_number] + ", thanks for the message!"
+        else:
+            message = "Thanks for the message!"
+
+        resp = twilio.twiml.Response()
+        resp.message(message)
+
+        return str(resp)
+    if request.method == "GET":
+        return render_template("response.html")
+
+
+
+
+
 
 @app.route("/send_message", methods=['GET', 'POST'])
 def send_message():
