@@ -13,28 +13,13 @@ callers = {
 }
 
 
-# @app.route("/", methods=['GET', 'POST'])
-# def hello_monkey():
-#     """Respond and greet the caller by name."""
-#
-#     from_number = request.values.get('From', None)
-#     if from_number in callers:
-#         message = callers[from_number] + ", thanks for the message!"
-#     else:
-#         message = "Monkey, thanks for the message!"
-#
-#     resp = twilio.twiml.Response()
-#     resp.message(message)
-#
-#     return str(resp)
-
-
-
-
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     """Respond and greet the caller by name."""
     if request.method == "POST":
+        message = request.values
+        with open("new_file.txt, w") as file
+        file.write(message)
         from_number = request.values.get('From')
         if from_number in callers:
             message = callers[from_number] + ", thanks for the message!"
@@ -47,9 +32,6 @@ def hello():
         return str(resp)
     if request.method == "GET":
         return render_template("response.html")
-
-
-
 
 
 
