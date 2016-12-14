@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, render_template
 import twilio.twiml
 import os
 from send_sms import *
-from validation import *
+# from validation import *
 
 app = Flask(__name__)
 
