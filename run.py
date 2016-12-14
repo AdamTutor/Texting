@@ -34,9 +34,9 @@ def hello():
 
 @app.route("/send_message", methods=['GET', 'POST'])
 def send_message():
-    if request.message == "GET":
-        render_template("send_sms.html")
-    if request.message == "POST":
+    if request.method == "GET":
+        return render_template("send_sms.html")
+    if request.method == "POST":
         send_sms(request.form["your_number"], request.form["recipient_number"], request.form["msg"])
         return redirect("/send_message")
 
