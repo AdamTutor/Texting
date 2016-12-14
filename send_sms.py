@@ -1,8 +1,8 @@
 from twilio.rest import TwilioRestClient
 from api import sid, key, my_number, number
-Find these values at https://twilio.com/user/account
-
-POST https://api.twilio.com/2010-04-01/Accounts/AC123456abc/Messages
+# Find these values at https://twilio.com/user/account
+#
+# POST https://api.twilio.com/2010-04-01/Accounts/AC123456abc/Messages
 
 
 account_sid = sid
