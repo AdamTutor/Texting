@@ -17,18 +17,20 @@ callers = {
 def hello():
     """Respond and greet the caller by name."""
     if request.method == "POST":
-        from_number = request.values.get('From')
-        if from_number in callers:
-            message = callers[from_number] + ", thanks for the message!"
-        else:
-            message = "Thanks for the message!"
-
-        resp = twilio.twiml.Response()
-        resp.message(message)
-
-        return str(resp)
-    if request.method == "GET":
-        return render_template("response.html")
+        send_sms(my_number,number, "Hello there" )
+    # if request.method == "POST":
+    #     from_number = request.values.get('From')
+    #     if from_number in callers:
+    #         message = callers[from_number] + ", thanks for the message!"
+    #     else:
+    #         message = "Thanks for the message!"
+    #
+    #     resp = twilio.twiml.Response()
+    #     resp.message(message)
+    #
+    #     return str(resp)
+    # if request.method == "GET":
+    #     return render_template("response.html")
 
 
 
@@ -37,7 +39,7 @@ def send_message():
     if request.message == "GET":
         render_template("response.html")
     if request.message == "POST":
-        send_sms(request.form["your_number"], request.form["recipient's_number"], request.form("msg"))
+        send_sms(request.form["your_number"], request.form["recipient_number"], request.form["msg"])
         return redirect("/send_message")
 
 if __name__ == "__main__":
