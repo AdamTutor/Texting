@@ -19,25 +19,18 @@ def deleteTeams():
     """delete teams from teams table in database"""
     DB = connect()
     cursor = DB.cursor()
-    cursor.execute("DELETE FROM teams;");
+    cursor.execute("DELETE FROM users WHERE ;");
     DB.commit()
     DB.close()
     print("all teams deleted")
 
-def countEvents():
-    """Returns the number of events currently registered."""
-    DB = connect()
-    cursor = DB.cursor()
-    cursor.execute("SELECT count(*) as num FROM events;")
-    result = int(cursor.fetchone()[0])
-    DB.close()
-    return result
 
 
-def countTeams():
+
+def countUser():
     DB = connect()
     cursor = DB.cursor()
-    cursor.execute("SELECT count(*) as num FROM teams;")
+    cursor.execute("SELECT count(*) as num FROM users;")
     result = int(cursor.fetchone()[0])
     DB.close()
     return result
@@ -58,23 +51,7 @@ def registerUser(email, username, password):
     DB.close()
     print(username,"registered.")
 
-def registerTeam(name):
-    """Adds a new team to the database."""
-    DB = connect()
-    cursor = DB.cursor()
-    cursor.execute("INSERT INTO teams (name) VALUES (%s);",
-    (name,))
-    DB.commit()
-    DB.close()
-    print("Team",name,"added")
-    DB = connect()
-    cursor = DB.cursor()
-    cursor.execute("SELECT id FROM teams WHERE name = %s;",(name,))
-    ans = cursor.fetchone()[0]
-    DB.commit()
-    DB.close()
-    print(ans)
-    return ans
+
 
 def allEvents():
     DB = connect()

@@ -31,37 +31,33 @@ def hello():
     if request.method == "GET":
         return render_template("index.html")
 
-@app.route("/send_message", methods=['GET', 'POST'])
-def send_message():
-    if request.method == "GET":
-        return render_template("send_sms.html")
-    if request.method == "POST":
-        try:
-            send_sms(request.form["your_number"], request.form["recipient_number"], request.form["msg"])
-        finally:
-            return redirect("/send_message")
-
-@app.route("/login", methods=['GET',"POST"])
-def login():
-    if request.method = "GET":
-        return render_template("login.html")
-    if request.method = "POST":
-        return render_template("user.html")
-
-@app.route("/register", methods=['GET','POST'])
-def register():
-    if request.method == 'GET':
-        render_template(register.html)
-
-@app.route("/validation", methods=['GET', 'POST'])
-def validation():
-    if request.method = "POST":
-
-
-
-
-
-
+# @app.route("/send_message", methods=['GET', 'POST'])
+# def send_message():
+#     if request.method == "GET":
+#         return render_template("send_sms.html")
+#     if request.method == "POST":
+#         try:
+#             send_sms(request.form["your_number"], request.form["recipient_number"], request.form["msg"])
+#         finally:
+#             return redirect("/send_message")
+#
+# @app.route("/login", methods=['GET',"POST"])
+# def login():
+#     if request.method == "GET":
+#         return render_template("login.html")
+#     if request.method == "POST":
+#         return render_template("user.html")
+#
+# @app.route("/register", methods=['GET','POST'])
+# def register():
+#     if request.method == 'GET':
+#         render_template(register.html)
+#
+# @app.route("/validation", methods=['GET', 'POST'])
+# def validation():
+#     if request.method == "POST":
+#         if password_is_valid(request.form[""])and
+#         request.form[""]
 
 
 
