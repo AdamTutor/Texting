@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>Create Event</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='schedule.css') }}">
+     <link rel= "stylesheet" type= "text/css" href= "/static/index.css">
+</head>
+
+<body>
+  <ul>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Home</a>
+      <div class="dropdown-content">
+        <a href="/">Home</a>
+          <a href="/login">login</a>
+        <a href="/send_message">Send Text Messge</a>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Register</a>
+      <div class="dropdown-content">
+        <a href="/register">New user</a>
+        <a href="/teams/new/">Register New team</a>
+        <a href="/events/new/">Register New Event</a>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">Schedule</a>
+          <div class="dropdown-content">
+            <a href="/schedule">View schedule</a>
+            <a href="/teams/">View teams</a></a>
+
+
+
+      </div>
+    </li>
+  </ul>
+<form action="/schedule" method="post">
+  Team 1 ID <input name="team1-id"/> <br />
+  Team 2 ID <input name="team2-id"/><br />
+  Date  Time <input name="datetime" type="datetime"/><br />
+  Event Type<input name="type"/>
+  <button type="submit">Create Event</button>
+  </form>
+</body>
+
+</html>

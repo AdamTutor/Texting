@@ -1,22 +1,11 @@
-def password_is_valid(password):
-    if len(password) >= 5:
-        return True
-    else:
-        return False
-
-
 def email_is_valid(email):
-    if "@" in email and len(email) > 3:
-        return True
-    else:
-        return False
-
+    return "@" in email and ".com" in email
 
 def username_is_valid(username):
-    if
+    return len(username) >= 3
 
+def password_is_valid(password):
+    return len(password) >= 5
 
-x = password_is_valid("ee33e")
-print(x)
-x = email_is_valid("")
-print(x)
+def password_confirm(password, password_confirm):
+    return password == password_confirm

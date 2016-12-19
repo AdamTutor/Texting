@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html>
+<link rel= "stylesheet" type= "text/css" href= "/static/index.css">
+<head>
+    <title>Schedule</title>
+    <link rel="stylesheet" type="text/css" href="static/schedule.css">
+</head>
+
+<body>
+  <ul>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Home</a>
+      <div class="dropdown-content">
+        <a href="/">Home</a>
+          <a href="/login">login</a>
+        <a href="/send_message">Send Text Messge</a>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Register</a>
+      <div class="dropdown-content">
+        <a href="/register">New user</a>
+        <a href="/teams/new/">Register New team</a>
+        <a href="/events/new/">Register New Event</a>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">Schedule</a>
+          <div class="dropdown-content">
+            <a href="/schedule">View schedule</a>
+            <a href="/teams/">View teams</a></a>
+
+
+
+      </div>
+    </li>
+  </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Team1</th>
+                <th>Team2</th>
+                <th>Time</th>
+                <th>Event Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <th>{{ event[0] }}</th>
+                <td>{{ event[1] }}</td>
+                <td>{{ event[2] }}</td>
+                <td>{{ event[3] }}</td>
+                <td>{{ event[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</body>
+
+</html>

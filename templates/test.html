@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Makes "field" required and an email address.</title>
+<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+</head>
+<ul>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Home</a>
+    <div class="dropdown-content">
+      <a href="/">Home</a>
+        <a href="/login">login</a>
+      <a href="/send_message">Send Text Messge</a>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Register</a>
+    <div class="dropdown-content">
+      <a href="/register">New user</a>
+      <a href="/teams/new/">Register New team</a>
+      <a href="/events/new/">Register New Event</a>
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Schedule</a>
+        <div class="dropdown-content">
+          <a href="/schedule">View schedule</a>
+          <a href="/teams/">View teams</a></a>
+
+
+
+    </div>
+  </li>
+</ul>
+<body>
+<form id="myform">
+<label for="field">Required, email: </label>
+<input class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+</form>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+<script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      email: true
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -2,19 +2,31 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='static/index.css') }}">
+ <link rel= "stylesheet" type= "text/css" href= "/static/index.css">
 </head>
 <body>
 
 <ul>
-  <li><a href="/">Home</a></li>
-  <li><a href="/send_message">Send Text message</a></li>
-  <!-- <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Home</a>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a> -->
+      <a href="/">Home</a>
+        <a href="/login">login</a>
+      <a href="/send_message">Send Text Messge</a>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Register</a>
+    <div class="dropdown-content">
+      <a href="/register">New user</a>
+      <a href="/teams/new/">Register New team</a>
+      <a href="/events/new/">Register New Event</a>
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Schedule</a>
+        <div class="dropdown-content">
+          <a href="/schedule">View schedule</a>
+          <a href="/teams/">View teams</a></a>
+
+
+
     </div>
   </li>
 </ul>

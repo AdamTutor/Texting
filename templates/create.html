@@ -1,0 +1,42 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>Register Team</title>
+    <!-- <link rel="stylesheet" type="text/css" href="static/schedule.css"> -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='schedule.css') }}">
+     <link rel= "stylesheet" type= "text/css" href= "/static/index.css">
+</head>
+
+<body>
+  <ul>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Home</a>
+      <div class="dropdown-content">
+        <a href="/">Home</a>
+          <a href="/login">login</a>
+        <a href="/send_message">Send Text Messge</a>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Register</a>
+      <div class="dropdown-content">
+        <a href="/register">New user</a>
+        <a href="/teams/new/">Register New team</a>
+        <a href="/events/new/">Register New Event</a>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">Schedule</a>
+          <div class="dropdown-content">
+            <a href="/schedule">View schedule</a>
+            <a href="/teams/">View teams</a></a>
+
+
+
+      </div>
+    </li>
+  </ul>
+<form action="/teams/" method="post">
+  <input name="team-name"/>
+  <button type="submit">Create Team</button>
+  </form>
+</body>
+
+</html>

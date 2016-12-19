@@ -1,10 +1,59 @@
-<h1>Please login!</h1>
-<form id="login">
-<input type="text" name="username" placeholder="Username"/><br />
-<input type="" name="password" placeholder="Password"/>
-<input type="password" name="password" placeholder="Password"/>
-<input type="password" name="password" placeholder="Password"/>
+<link rel= "stylesheet" type= "text/css" href= "/static/index.css">
 
+<ul>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Home</a>
+    <div class="dropdown-content">
+      <a href="/">Home</a>
+        <a href="/login">login</a>
+      <a href="/send_message">Send Text Messge</a>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Register</a>
+    <div class="dropdown-content">
+      <a href="/register">New user</a>
+      <a href="/teams/new/">Register New team</a>
+      <a href="/events/new/">Register New Event</a>
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Schedule</a>
+        <div class="dropdown-content">
+          <a href="/schedule">View schedule</a>
+          <a href="/teams/">View teams</a></a>
+
+
+
+    </div>
+  </li>
+</ul>
+
+<h1>Register</h1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<div>
+<form id="login" action="/register" method="POST">
+<input id="email" type ="email" name="email" placeholder="Email" required/><br />
+<input id="username" type="text" name="username" placeholder="Username" required/><br />
+<input id="password" type="password" name="password" placeholder="Password" required/><br />
+<input type="password" name="password_confirm" placeholder="Password" required/><br />
 <input type="submit"/>
 </form>
-<a href="/register">regiser here</a>
+</div>
+<!-- <a href="/register">register here</a> -->
+
+
+  <!-- <script src="../static/jquery.js"> </script> -->
+
+
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/lodash/4.16.3/lodash.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+  <script src="../static/validation.js"></script>
