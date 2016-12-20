@@ -50,10 +50,13 @@ def send_message():
 def login():
     if request.method == "GET":
         return render_template("login.html")
-    # if request.method == "POST" and is_valid(request.form):
-    #     return render_template("user.html")
-    # else:
-    #     return redirect("/login")
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        print(password)
+        print(hashedpassword(username))
+        bcrypt.checkpw(password.encode("utf-8"), hashedpassword(username).encode("utf-8")) == hashed
+        return render_template("register.html")
 
 @app.route("/register", methods=['GET','POST'])
 def register():

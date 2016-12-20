@@ -107,6 +107,14 @@ def allTeams():
     DB.close()
     return teams
 
+def hashedpassword(name):
+    DB = connect()
+    cursor = DB.cursor()
+    cursor.execute("SELECT password FROM users WHERE username = (%s);",(name,))
+    hashedpassword = cursor.fetchone()[0]
+    DB.close()
+    return hashedpassword
+
 def countUser():
     DB = connect()
     cursor = DB.cursor()
@@ -126,7 +134,7 @@ def registerUser(email, username, password):
     DB = connect()
     cursor = DB.cursor()
     cursor.execute("INSERT INTO users (email, username, password) VALUES ( %s , %s , %s);",
-    (email, username, bcrypt.hashpw(password,bcrypt.gensalt())))
+    (email, username, bcrypt.hashpw(password.encode(),bcrypt.gensalt())))
     DB.commit()
     DB.close()
     print(username,"registered.")
