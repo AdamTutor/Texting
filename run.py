@@ -10,7 +10,9 @@ import psycopg2
 # from validation import *
 
 app = Flask(__name__)
-app.secret_key = 'some_secret'
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 
 # Try adding your own number to this list!
 callers = {
