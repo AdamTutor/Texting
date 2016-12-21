@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template, flash, Response
-from flask.ext.login import LoginManager, UserMixin, login_required
+from flask_login import LoginManager, UserMixin, login_required
 import twilio.twiml
 import os
 from send_sms import *
@@ -13,8 +13,15 @@ app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
-# Try adding your own number to this list!
+# @login_manager
+# def load_user(user_id):
+#     return User.get(user_id)
+
+
 callers = {
     "+14158675309": "Curious George",
     "+14158675310": "Boots",
@@ -72,7 +79,9 @@ def register():
         password_confirmation = request.form["password_confirm"]
         if email_is_valid(email) and username_is_valid(username) and password_is_valid(password) and password_confirm(password, password_confirmation):
             try:
-                registerUser(email, username, password)
+                User.create(email, username, password)
+                login_user(user)
+                flask.flash("logged in succesfully!")
             except psycopg2.IntegrityError as e:
                 flash(str(e))
                 return redirect("/register")

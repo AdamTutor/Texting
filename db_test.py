@@ -5,7 +5,7 @@ def testCountEvents():
     Tests if count of events is 0 after all events deleted.
     Tests if count is 1 after an event is registered
     """
-    deleteTeams()
+    Teams.delete()
     id1 = registerTeam('blue')
     id2 = registerTeam('red')
     deleteEvents()
