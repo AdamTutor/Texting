@@ -134,18 +134,26 @@ class User(UserMixin):
         return
 
 
-    
+    def getEvents(self):
+        DB = connect()
+        cursor = DB.cursor()
+        cursor.execute("SELECT * FROM events where ")
 
 
+
+    @staticmethod
     def create(email, username, password):
         DB = connect()
         cursor = DB.cursor()
         cursor.execute("INSERT INTO users (email, username, password) VALUES ( %s , %s , %s);",
-        (email, username, bcrypt.hashpw(password.encode(),bcrypt.gensalt())))
+        (email, username, bcrypt.hashpw(password.encode(),bcrypt.gensalt()).decode('utf-8')))
         DB.commit()
-        DB.close()
-        print(username,"registered.")
+        cursor.execute("SELECT * from users WHERE username =(%s)",(username,))
+        user = User(*cursor.fetchone())
+        return user
 
+
+    @staticmethod
     def countUser():
         DB = connect()
         cursor = DB.cursor()
@@ -154,14 +162,15 @@ class User(UserMixin):
         DB.close()
         return result
 
-    @staticmethod
-    def hashedpassword(name):
-        DB = connect()
-        cursor = DB.cursor()
-        cursor.execute("SELECT password FROM users WHERE username = (%s);",(name,))
-        hashedpassword = cursor.fetchall()
-        DB.close()
-        return hashedpassword
+
+    # @staticmethod
+    # def hashedpassword(name):
+    #     DB = connect()
+    #     cursor = DB.cursor()
+    #     cursor.execute("SELECT password FROM users WHERE username = (%s);",(name,))
+    #     hashedpassword = cursor.fetchall()
+    #     DB.close()
+    #     return hashedpassword
 
     @staticmethod
     def getall():
@@ -176,7 +185,7 @@ class User(UserMixin):
     def get(id):
         DB = connect()
         cursor = DB.cursor()
-        cursor.execute("SELECT * FROM users WHERE id =(%s);",(id,))
+        cursor.execute("SELECT * FROM users WHERE id = %s;",(id,))
         user = User(*cursor.fetchone())
         DB.close()
         return user
@@ -185,10 +194,12 @@ class User(UserMixin):
     def getByUsername(username):
         DB = connect()
         cursor = DB.cursor()
-        cursor.execute("SELECT User FROM users WHERE username =(%s) "),(username,)
+        cursor.execute("SELECT * FROM users WHERE username = %s;",(username,))
         user = User(*cursor.fetchone())
         DB.close()
         return user
+
+
 
 
 
