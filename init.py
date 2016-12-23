@@ -1,5 +1,6 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+import db
 
 def createdb():
     DB = psycopg2.connect(dbname="postgres")
@@ -16,5 +17,11 @@ def createdb():
     print("Success")
 
 
-
-createdb()
+def recreate_tables():
+    DB = db.connect()
+    cursor = DB.cursor()
+    cursor.execute(open("init.sql").read())
+    DB.commit()
+    DB.close()
+if __name__ == '__main__':
+    recreate_tables()

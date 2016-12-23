@@ -1,6 +1,7 @@
-from flask import Flask, request, redirect, render_template, flash, Response
+from flask import Flask, request, redirect, render_template, flash, Response, json, jsonify
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 import twilio.twiml
+from twilio.rest import TwilioRestClient
 import os
 from send_sms import *
 from validation import *
@@ -124,11 +125,17 @@ def newEvent():
     return render_template("event_form.html")
 
 @app.route("/logout")
-@login_required
 def logout():
     logout_user()
     return redirect("/login")
 
+
+@app.route("/login/user/admin")
+def admin():
+    client = TwilioRestClient(sid, key)
+    messages = client.messages.list()
+    for message in messages:
+        return json.stringify(message)
 
 
 

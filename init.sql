@@ -1,30 +1,25 @@
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     "id" serial PRIMARY KEY,
     "email" text NOT NULL UNIQUE,
     "username" varchar(25) NOT NULL UNIQUE,
     "password" text NOT NULL
-
-
 );
-
+DROP TABLE IF EXISTS numbers;
 CREATE TABLE numbers (
     "id" serial PRIMARY KEY,
     "users" text NOT NULL,
     "number" integer NOT NULL,
     user_id integer REFERENCES users
 );
-
--- SELECT n.number
--- FROM numbers n
--- WHERE n.user_id = 3
-
+DROP TABLE IF EXISTS teams;
 CREATE TABLE teams (
     "id" serial,
     "name" text NOT NULL,
     PRIMARY KEY ("id"),
     UNIQUE ("name")
 );
-
+DROP TABLE IF EXISTS events;
 CREATE TABLE events (
     "id" serial,
     "team1" integer NOT NULL,
